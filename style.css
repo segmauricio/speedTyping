@@ -3,9 +3,10 @@ body{
     background: linear-gradient(180deg, rgba(77,152,219,1) 0%, rgba(0,0,0,1) 110%);
     font-family: Georgia, 'Times New Roman', Times, serif;
     height: 797px;
+    text-align: center;
 }
 .picture1{
-    margin-left: 2in;
+    margin-left: 10%;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     font-size:30px; /* le agregue font size para que quede similar al ejemplo dado en el ejercitario*/
@@ -20,12 +21,13 @@ body{
     font-family: Georgia, 'Times New Roman', Times, serif; /* le agregue font especifica para que quede similar al ejemplo dado en el ejercitario*/
     padding: 10px 40px 15px 10px;
     width: 1000px;
-    height: 500px;
+    height: 60%;
     background: #ececec;
     margin: -47px 110px 0px 150px; /* este margen puse porque el div con la imagen quedaba mucho mas arriba que mi div container o principal */
 }
 .titulo{
     text-decoration: underline;
+    text-align: left;
 }
 .juego{
     text-align: center;
