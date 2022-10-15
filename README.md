@@ -1,1 +1,1 @@
-# speedTyping
+typingGame
