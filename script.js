@@ -6,7 +6,6 @@ let tiempos = JSON.parse(localStorage.getItem('tiempos')) || [];
 console.log(tiempos);
 
 const textos = [
-  'Prueba',
   'When you have eliminated the impossible, whatever remains, however improbable, must be the truth.',
   'There is nothing more deceptive than an obvious fact.',
   'I ought to know by this time that when a fact appears to be opposed to a long train of deductions it invariably proves to be capable of bearing some other interpretation.',
@@ -25,6 +24,7 @@ const textoElemento = document.getElementById('textos');
 const messageElement = document.getElementById('mensaje');
 const quoteElement = document.getElementById('quote');
 const typedValueElement = document.getElementById('texto-tipeado');
+const scoreboard = document.getElementById("scoreboard");
 
 // en el final de nuestro archivo script.js
 document.getElementById('inicio').addEventListener('click', () => {
@@ -68,13 +68,15 @@ typedValueElement.addEventListener('input', () => {
   if (typedValue === currentWord && palabraIndice === palabras.length - 1) {
     // fin de la sentencia
     // Definimos el mensaje de éxito
+
     const elapsedTime = new Date().getTime() - startTime;
 
     window.alert(`FELICITACIONES! Haz finalizado el juego en ${elapsedTime / 1000} segundos`);
-    const message = `FELICITACIONES! Finalizaste en ${elapsedTime / 1000} segundos.`;
+    //const message = `FELICITACIONES! Finalizaste en ${elapsedTime / 1000} segundos.`;
 
     tiempos.push(elapsedTime);
     localStorage.setItem('tiempos', JSON.stringify(tiempos));
+    updateScoreboard();
 
     /*const maxTime = localStorage.getItem('maxTime') //Esta linea lo que hace es buscar el elemento "maxTime" dentro del localStorage
     //Puede entregar un valor o NULL si no existe. En nuestro caso, como es la primera implementacion, no va a existir
@@ -85,9 +87,7 @@ typedValueElement.addEventListener('input', () => {
     }else { //Si maxTime no existe, directamente hace setItem porque sabe que es el unico valor
       localStorage.setItem('maxTime', elapsedTime);
     } */
-
-    let tiempos = JSON.parse(localStorage.getItem('tiempos')) || []
-    messageElement.innerText = message;
+  //messageElement.innerText = message;
 
   } else if (typedValue.endsWith(' ') && typedValue.trim() === currentWord) {
     // fin de la palabra
@@ -110,3 +110,16 @@ typedValueElement.addEventListener('input', () => {
     typedValueElement.className = 'error';
   }
 });
+
+function updateScoreboard(){
+  scoreboard.innerHTML = '';
+  tiempos = tiempos.sort((a, b) => a - b)
+  tiempos.forEach(tiempo => {
+    const tiempoElement = document.createElement("div");
+    tiempoElement.innerHTML = `${tiempo/1000} secs.`;
+    scoreboard.appendChild(tiempoElement);
+    console.log(tiempo);
+  })
+}
+
+document.addEventListener("DOMContentLoaded", updateScoreboard);
