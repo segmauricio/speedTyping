@@ -1,6 +1,12 @@
 // dentro del script.js
 // todas nuestros textos de ejemplo
+
+//SCOREBOARD
+let tiempos = JSON.parse(localStorage.getItem('tiempos')) || [];
+console.log(tiempos);
+
 const textos = [
+  'Prueba',
   'When you have eliminated the impossible, whatever remains, however improbable, must be the truth.',
   'There is nothing more deceptive than an obvious fact.',
   'I ought to know by this time that when a fact appears to be opposed to a long train of deductions it invariably proves to be capable of bearing some other interpretation.',
@@ -63,8 +69,14 @@ typedValueElement.addEventListener('input', () => {
     // fin de la sentencia
     // Definimos el mensaje de éxito
     const elapsedTime = new Date().getTime() - startTime;
+
+    window.alert(`FELICITACIONES! Haz finalizado el juego en ${elapsedTime / 1000} segundos`);
     const message = `FELICITACIONES! Finalizaste en ${elapsedTime / 1000} segundos.`;
-    const maxTime = localStorage.getItem('maxTime'); //Esta linea lo que hace es buscar el elemento "maxTime" dentro del localStorage
+
+    tiempos.push(elapsedTime);
+    localStorage.setItem('tiempos', JSON.stringify(tiempos));
+
+    /*const maxTime = localStorage.getItem('maxTime') //Esta linea lo que hace es buscar el elemento "maxTime" dentro del localStorage
     //Puede entregar un valor o NULL si no existe. En nuestro caso, como es la primera implementacion, no va a existir
     if (maxTime) { //El primer if revisa si maxTime tiene algun valor. Si lo tiene, el if adentro revisa que ese maxTime sea mayor, es decir, un peor tiempo al nuevo
       if (maxTime > elapsedTime) {
@@ -72,8 +84,11 @@ typedValueElement.addEventListener('input', () => {
       }
     }else { //Si maxTime no existe, directamente hace setItem porque sabe que es el unico valor
       localStorage.setItem('maxTime', elapsedTime);
-    }
+    } */
+
+    let tiempos = JSON.parse(localStorage.getItem('tiempos')) || []
     messageElement.innerText = message;
+
   } else if (typedValue.endsWith(' ') && typedValue.trim() === currentWord) {
     // fin de la palabra
     // vaciamos el valor typedValueElement para la siguiente palabra

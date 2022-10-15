@@ -36,6 +36,20 @@ body{
 .highlight {
     background-color: yellow;
 }
+#scoreboard{
+        -webkit-webkit: border radius 15px;
+        -moz-webkit: border radius 15px;
+        -ms-webkit: border radius 15px;
+        -o-webkit: border radius 15px;
+        padding: 10px;
+        margin-top: 35px;
+}
+#scoreboard p{
+    font-weight: bold;
+}
+.bordepunteado{
+    border: 9px double blue;
+}
 .error {
     background-color: lightcoral;
     border-color: red;
